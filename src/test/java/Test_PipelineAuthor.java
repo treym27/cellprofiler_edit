@@ -22,6 +22,6 @@ public class Test_PipelineAuthor{
     public void testTemplateReplacement(){
         PipelineAuthor pa = new PipelineAuthor();
         pa.addReplacementRule(new Replacement("@minman", "10,70"));
-        pa.buildPipeline();
+        pa.buildPipeline("");
     }
 }

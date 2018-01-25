@@ -42,7 +42,7 @@ public class PipelineAuthor{
         return original;
     }
 
-    public String buildPipeline(){
+    public String buildPipeline(String outputDirectory){
 
         ArrayList<String> newest = new ArrayList<String>();
 
@@ -50,7 +50,7 @@ public class PipelineAuthor{
             newest.add(executeReplacements(str));
         }
 
-        String pipelineFileName = "output.cppipe";
+        String pipelineFileName = outputDirectory + "output.cppipe";
         try{
             FileWriter writer = new FileWriter(pipelineFileName); 
             for(String str: newest) {
