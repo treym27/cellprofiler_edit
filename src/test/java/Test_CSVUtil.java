@@ -23,4 +23,11 @@ public class Test_CSVUtil {
         CSVUtil c = new CSVUtil("src/test/resources/config/MacroCells.csv");
         assertTrue(c.loadCSV());
     }
+
+    @Test
+    public void testGetSingleValue(){
+        CSVUtil c = new CSVUtil("src/test/resources/config/MacroCells.csv");
+        double d = c.getValue(3,3);
+        assertEquals(2694, d, 0.0);
+    }
 }
