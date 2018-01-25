@@ -19,8 +19,8 @@ public class Test_CSVUtil {
 
 
     @Test
-    public void testRetOne(){
-        CSVUtil c = new CSVUtil("empty");
-        assertEquals(1, c.retOne());
+    public void testLoadCSV(){
+        CSVUtil c = new CSVUtil("src/test/resources/config/MacroCells.csv");
+        assertTrue(c.loadCSV());
     }
 }
