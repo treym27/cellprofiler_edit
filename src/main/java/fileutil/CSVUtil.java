@@ -50,7 +50,7 @@ public class CSVUtil{
         for(CSVRecord cr : this.records){
             i++;
             String s = cr.get(column);
-            System.out.println(s);
+            //System.out.println(s);
             if(i == row && StringUtils.isNumeric(s)){
                 
                 return Double.parseDouble(s);
