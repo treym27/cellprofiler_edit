@@ -30,7 +30,7 @@ public class CSVUtil{
     public boolean loadCSV(String fileName){
         try(
             Reader r = Files.newBufferedReader(Paths.get(fileName));
-            CSVParser c = new CSVParser(r, CSVFormat.DEFAULT);
+            CSVParser c = new CSVParser(r, CSVFormat.DEFAULT.withFirstRecordAsHeader());
         ){
             this.records = c.getRecords();
             if(this.records != null)
@@ -41,11 +41,32 @@ public class CSVUtil{
         }
         return false;
     }
-    //note these numbers are 1 indexed to conform with 
-    //excel numbering scheme
-    public double getValue(int row, int column){
-        row--;
+    //note these numbers are indexed to conform with 
+    //excel numbering scheme i.e. the row value is the row value 
+    //shown in excel
+    public double getValue(int column, int row){
+        row -= 2;
         column--;
+        int i = -1;
+        for(CSVRecord cr : this.records){
+            i++;
+            String s = cr.get(column);
+            //System.out.println(s);
+            if(i == row && StringUtils.isNumeric(s)){
+                
+                return Double.parseDouble(s);
+            }
+        }
+
+        return -1;
+    }
+
+    //note these numbers are indexed to conform with 
+    //excel numbering scheme i.e. the row value is the row value 
+    //shown in excel
+    public double getValue(String column, int row){
+        row -= 2;
+      
         int i = -1;
         for(CSVRecord cr : this.records){
             i++;
