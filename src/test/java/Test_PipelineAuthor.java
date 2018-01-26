@@ -20,8 +20,16 @@ public class Test_PipelineAuthor{
 
     @Test
     public void testTemplateReplacement(){
+        System.out.println("Starting testTemplateReplacement...");
         PipelineAuthor pa = new PipelineAuthor();
         pa.addReplacementRule(new Replacement("@minman", "10,70"));
         pa.buildPipeline("");
+    }
+
+
+
+    @After
+    public void printSpacing(){
+        System.out.println();
     }
 }
