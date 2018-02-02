@@ -44,13 +44,18 @@ public class PipelineAuthor{
 
     public String buildPipeline(String outputDirectory){
 
+        return buildPipeline(outputDirectory, "output.cppipe");
+    }
+
+    public String buildPipeline(String outputDirectory, String outputPipeline){
+
         ArrayList<String> newest = new ArrayList<String>();
 
         for(String str : orig){
             newest.add(executeReplacements(str));
         }
 
-        String pipelineFileName = outputDirectory + "output.cppipe";
+        String pipelineFileName = outputDirectory + outputPipeline;
         try{
             FileWriter writer = new FileWriter(pipelineFileName); 
             for(String str: newest) {
@@ -63,5 +68,6 @@ public class PipelineAuthor{
             return "";
         }
         return pipelineFileName;
+
     }
 }
