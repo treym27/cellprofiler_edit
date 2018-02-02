@@ -61,6 +61,49 @@ public class Test_CSVUtil {
 
     }
 
+    @Test
+    public void testColumnAverage(){
+        System.out.println("Starting testColumnAverage...");
+
+        double expected = 2318.073;
+        int row = 3;
+        String col = "AreaShape_Area";
+        CSVUtil c = new CSVUtil("src/test/resources/config/MacroCells.csv");
+
+        System.out.println("Finding Average Value at Col: "+ col +"..." );
+
+        double d = c.getColumnAverage(col);
+
+        System.out.println("\t Col: "+ col +" == " + d + ", expected: " + expected);
+
+        assertEquals(expected, d, 0.005 * expected);
+
+    }
+
+    @Test
+    public void testNthPercentile(){
+        System.out.println("Starting testNthPercentile...");
+
+        double expected = 4285.4;
+        double perc = 0.90;
+        String col = "AreaShape_Area";
+        CSVUtil c = new CSVUtil("src/test/resources/config/MacroCells.csv");
+        System.out.println("Find 90th percentile at col: " + col + "...");
+
+        double d = c.getNthPercentile(col,perc);
+        System.out.println("\t Col: " + col + " == " + d + ", expected: " + expected);
+        assertEquals(expected, d, 0.005 * expected);
+
+        expected = 2821.5;
+        perc = 0.70;
+        System.out.println("Find 70th percentile at col: " + col + "...");
+
+        d = c.getNthPercentile(col,perc);
+        System.out.println("\t Col: " + col + " == " + d + ", expected: " + expected);
+        assertEquals(expected, d, 0.005 * expected);
+
+    }
+
 
     @After
     public void printSpacing(){
