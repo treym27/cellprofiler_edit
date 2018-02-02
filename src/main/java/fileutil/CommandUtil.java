@@ -3,13 +3,24 @@ import java.io.*;
 import java.util.*;
 import java.nio.file.Files;
 
-public class FileCopyUtil {
-	private String dirPath;
-	public FileCopyUtil(String dirPath) {
-		this.dirPath = dirPath;
+public class CommandUtil {
+	private String programPath;
+	private String imagesPath;
+	private String outPath;
+	private String pipePath;
+
+	public CommandUtil(String programPath, String imagesPath, String outPath, String pipePath) {
+		this.programPath = programPath;
+		this.imagesPath = condenseDirectory(imagesPath);
+		this.outPath = outPath;
+		this.pipePath = pipePath;
+	}
+
+	public String getCommand() {
+		return this.programPath + " -c -r -i " + this.imagesPath + " -o " + this.outPath + " -p " + this.pipePath;
 	}
 	
-    public String condenseDirectory() {
+    public String condenseDirectory(String dirPath) {
     	try {
 	    	File folder = new File(dirPath);
 	    	File[] fileArr = folder.listFiles();
