@@ -17,7 +17,7 @@ public class CommandUtil {
 	}
 
 	public String getCommand() {
-		return this.programPath + " -c -r -i " + this.imagesPath + " -o " + this.outPath + " -p " + this.pipePath;
+		return this.programPath + " -r -i " + this.imagesPath + " -o " + this.outPath + " -p " + this.pipePath;
 	}
 	
     public String condenseDirectory(String dirPath) {
