@@ -17,10 +17,11 @@ public class CommandUtil {
 	}
 
 	public String getCommand() {
-		return this.programPath + " -r -i " + this.imagesPath + " -o " + this.outPath + " -p " + this.pipePath;
+		return this.programPath + " -c -i " + this.imagesPath + " -o " + this.outPath + " -p " + this.pipePath;
 	}
 	
     public String condenseDirectory(String dirPath) {
+    	System.out.println("Loading config directory");
     	try {
 	    	File folder = new File(dirPath);
 	    	File[] fileArr = folder.listFiles();
@@ -47,7 +48,7 @@ public class CommandUtil {
 	    		File newDir = new File(dirPath + "Temp\\");
 	    		boolean success = newDir.mkdir();
 	    		Files.copy(file.toPath(), (new File(dirPath + "Temp\\" + zList.get(i).getName())).toPath());
-	    		System.out.println(zList.get(i).getName());
+	    		//System.out.println(zList.get(i).getName());
 	    	}
 	    	return dirPath + "Temp\\";
     	}

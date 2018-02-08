@@ -9,7 +9,9 @@ public class Entry{
             "C:/Users/Steven/Desktop/Research/FARSIGHTTESTS/WORKING/Test_Images_Profiler/Batch/Buyout", 
             "C:/Users/Steven/Desktop/Research/CellProfilerWrapper/output"
         );
-        cp.runConfigPipeline();
-        cp.runCountingPipeline();
+        if( cp.runConfigPipeline())
+            cp.runCountingPipeline();
+
+        while(true){}
     }
 }
