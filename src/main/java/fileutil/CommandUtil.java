@@ -48,9 +48,22 @@ public class CommandUtil {
 	    		File newDir = new File(dirPath + "Temp\\");
 	    		boolean success = newDir.mkdir();
 	    		Files.copy(file.toPath(), (new File(dirPath + "Temp\\" + zList.get(i).getName())).toPath());
-	    		//System.out.println(zList.get(i).getName());
-	    	}
-	    	return dirPath + "Temp\\";
+	    		InputStream is = null;
+			    OutputStream os = null;
+			    try {
+			        is = new FileInputStream(file);
+			        os = new FileOutputStream(new File(dirPath + "Temp\\" + zList.get(i).getName()));
+			        byte[] buffer = new byte[1024];
+			        int length;
+			        while ((length = is.read(buffer)) > 0) {
+			            os.write(buffer, 0, length);
+			        }
+			    } finally {
+			        is.close();
+			        os.close();
+			    }
+			}
+			return dirPath + "Temp\\";
     	}
     	catch(IOException e) {
     		System.out.println(e);
