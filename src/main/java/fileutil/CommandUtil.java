@@ -17,7 +17,7 @@ public class CommandUtil {
 	}
 
 	public String getCommand() {
-		return this.programPath + " -c -i " + this.imagesPath + " -o " + this.outPath + " -p " + this.pipePath;
+		return this.programPath + " -c -i " + this.imagesPath + " -o " + this.outPath + " -p " + this.pipePath + " -L DEBUG";
 	}
 	
     public String condenseDirectory(String dirPath) {
@@ -62,6 +62,7 @@ public class CommandUtil {
 			        is.close();
 			        os.close();
 			    }
+
 			}
 			return dirPath + "Temp\\";
     	}

@@ -24,13 +24,15 @@ public class CellProfiler{
                 "C:/Users/Steven/Desktop/Research/CellProfilerWrapper/Pipelines/Configuration/Config.cppipe"
                 );
             System.out.println("Starting Config Process");
+            String command = thisCommand.getCommand();
+            thisCommand = null;
             new Thread(){
                 public void run(){
                     try{
-                    Process process = Runtime.getRuntime().exec(thisCommand.getCommand());
+                    Process process = Runtime.getRuntime().exec(command);
                     }
                     catch(IOException ioe){
-                        
+
                     }
                     //process.waitFor();
                     System.out.println("Finished Config Process");

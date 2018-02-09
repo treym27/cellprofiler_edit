@@ -85,6 +85,7 @@
           <version>1.2.1</version>
           <configuration>
             <mainClass>source.Entry</mainClass>
+            <async>true</async>
           </configuration>
         </plugin>
 
