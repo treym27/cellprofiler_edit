@@ -27,12 +27,13 @@ public class CellProfiler{
                 );
             
             String command = thisCommand.getCommand();
-            thisCommand = null;
             
             Process process = Runtime.getRuntime().exec(command);
             consumeBuffer(process);
             process.waitFor();
             System.out.println("Finished Config Process:Success");
+            thisCommand.deleteTemp(this.inputImageFolder + "Temp");
+            thisCommand = null;
     
             return true;
         
@@ -63,7 +64,7 @@ public class CellProfiler{
             consumeBuffer(process);
             process.waitFor();
             System.out.println("Finished Counting Process");
-        
+            thisCommand.deleteTemp(this.inputImageFolder + "Temp");
         }
         catch(Exception e){
 

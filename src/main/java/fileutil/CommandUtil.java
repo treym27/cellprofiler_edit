@@ -73,4 +73,12 @@ public class CommandUtil {
     		return "0";
     	}
     }
+    public void deleteTemp(String tempName) {
+    	File folder = new File(tempName);
+	    File[] fileArr = folder.listFiles();
+	    for(int i = 0; i < fileArr.length; i++) {
+	    	fileArr[i].delete();
+	    }
+	    folder.delete();
+    }
 }
