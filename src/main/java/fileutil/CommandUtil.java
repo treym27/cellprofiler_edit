@@ -47,7 +47,9 @@ public class CommandUtil {
 	    		File file = zList.get(i);
 	    		File newDir = new File(dirPath + "Temp\\");
 	    		boolean success = newDir.mkdir();
-	    		Files.copy(file.toPath(), (new File(dirPath + "Temp\\" + zList.get(i).getName())).toPath());
+	    		File f = new File(dirPath + "Temp\\" + zList.get(i).getName());
+	    		if(!f.exists())
+	    			Files.copy(file.toPath(), (new File(dirPath + "Temp\\" + zList.get(i).getName())).toPath());
 	    		InputStream is = null;
 			    OutputStream os = null;
 			    try {

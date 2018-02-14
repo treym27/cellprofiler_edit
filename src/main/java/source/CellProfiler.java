@@ -4,6 +4,7 @@ import fileutil.CommandUtil;
 import java.io.IOException;
 import pipelineauthor.PipelineFactory;
 import java.lang.Thread;
+import java.io.InputStream;
 
 public class CellProfiler{
     private String inputImageFolder;
@@ -16,6 +17,7 @@ public class CellProfiler{
 
 
     public boolean runConfigPipeline(){
+        System.out.println("Starting Config Process");
         try {
             CommandUtil thisCommand = new CommandUtil(
                 this.findExecutable(), 
@@ -23,26 +25,20 @@ public class CellProfiler{
                 this.outputMetaDataFolder, 
                 "C:/Users/Steven/Desktop/Research/CellProfilerWrapper/Pipelines/Configuration/Config.cppipe"
                 );
-            System.out.println("Starting Config Process");
+            
             String command = thisCommand.getCommand();
             thisCommand = null;
-            new Thread(){
-                public void run(){
-                    try{
-                    Process process = Runtime.getRuntime().exec(command);
-                    }
-                    catch(IOException ioe){
-
-                    }
-                    //process.waitFor();
-                    System.out.println("Finished Config Process");
-                }
-            }.run();
-            return false;
+            
+            Process process = Runtime.getRuntime().exec(command);
+            consumeBuffer(process);
+            process.waitFor();
+            System.out.println("Finished Config Process:Success");
+    
+            return true;
         
         }
         catch(Exception e) {
-            System.out.println(e);
+            System.out.println("Finished Config Process: Failed");
             return false;
         }
       
@@ -51,6 +47,7 @@ public class CellProfiler{
 
     public void runCountingPipeline(){
         //create the new countling pipeline
+        System.out.println("Starting Counting Process");
         String configCSV = this.outputMetaDataFolder + "/MacroCells.csv";
         String finalPipeline = PipelineFactory.constructPipeline(configCSV, this.outputMetaDataFolder);
         try{
@@ -61,8 +58,9 @@ public class CellProfiler{
                 this.outputMetaDataFolder, 
                 finalPipeline
                 );
-            System.out.println("Starting Counting Process");
+            
             Process process = Runtime.getRuntime().exec(thisCommand.getCommand());
+            consumeBuffer(process);
             process.waitFor();
             System.out.println("Finished Counting Process");
         
@@ -71,6 +69,27 @@ public class CellProfiler{
 
         }
 
+    }
+
+    public void consumeBuffer(Process process){
+        try{
+
+            new Thread() {
+                public void run() {
+                    InputStream stream = process.getInputStream();
+                    try { while (stream.read() >= 0) {} } catch (Exception e) {}
+                }
+            }.start();
+
+            new Thread() {
+                public void run() {
+                    InputStream stream = process.getErrorStream();
+                    try { while (stream.read() >= 0) {} } catch (Exception e) {}
+                }
+            }.start();
+        } catch(Exception e) {
+            System.out.println(e);
+        }
     }
 
 
