@@ -12,8 +12,7 @@ import fileutil.CSVUtil;
 
 
 public class PipelineFactory{
-    public static String constructPipeline(String configExcelFileName){
-        String finalPipelineFileName = "";
+    public static String constructPipeline(String configExcelFileName, String outputDirectory){
         //read in config file
         CSVUtil c = new CSVUtil(configExcelFileName);
         System.out.println("Calculating averages");
@@ -26,9 +25,9 @@ public class PipelineFactory{
 
         PipelineAuthor pa = new PipelineAuthor();
         pa.addReplacementRule(new Replacement("@minman", typicalMin + "," + typicalMax));
-        pa.buildPipeline("");
+        
 
-        return finalPipelineFileName;
+        return pa.buildPipeline(outputDirectory);
     }
 
 }

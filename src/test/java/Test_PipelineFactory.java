@@ -22,7 +22,7 @@ public class Test_PipelineFactory{
     //@Ignore
     public void testFactory(){
         System.out.println("Starting testFactory...");
-        PipelineFactory.constructPipeline("src/test/resources/config/MacroCells.csv");
+        PipelineFactory.constructPipeline("src/test/resources/config/MacroCells.csv", "");
         //44.959 , 63.99
     }
 
