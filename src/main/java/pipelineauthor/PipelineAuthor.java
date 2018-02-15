@@ -55,7 +55,7 @@ public class PipelineAuthor{
             newest.add(executeReplacements(str));
         }
 
-        String pipelineFileName = outputDirectory + outputPipeline;
+        String pipelineFileName = outputDirectory + "/"+ outputPipeline;
         try{
             FileWriter writer = new FileWriter(pipelineFileName); 
             for(String str: newest) {

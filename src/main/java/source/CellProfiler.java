@@ -22,7 +22,7 @@ public class CellProfiler{
             CommandUtil thisCommand = new CommandUtil(
                 this.findExecutable(), 
                 this.inputImageFolder, 
-                this.outputMetaDataFolder, 
+                this.outputMetaDataFolder + "/config", 
                 "C:/Users/Steven/Desktop/Research/CellProfilerWrapper/Pipelines/Configuration/Config.cppipe"
                 );
             
@@ -49,10 +49,10 @@ public class CellProfiler{
     public void runCountingPipeline(){
         //create the new countling pipeline
         System.out.println("Starting Counting Process");
-        String configCSV = this.outputMetaDataFolder + "/MacroCells.csv";
+        String configCSV = this.outputMetaDataFolder + "/config/MacroCells.csv";
         String finalPipeline = PipelineFactory.constructPipeline(configCSV, this.outputMetaDataFolder);
         try{
-            System.out.println(finalPipeline);
+            System.out.println("Counting pipeline: " + finalPipeline);
             CommandUtil thisCommand = new CommandUtil(
                 this.findExecutable(), 
                 this.inputImageFolder, 
