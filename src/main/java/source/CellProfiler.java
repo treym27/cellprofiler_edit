@@ -5,14 +5,33 @@ import java.io.IOException;
 import pipelineauthor.PipelineFactory;
 import java.lang.Thread;
 import java.io.InputStream;
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 public class CellProfiler{
     private String inputImageFolder;
     private String outputMetaDataFolder;
 
-    public CellProfiler(String inputImageFolder, String outputMetaDataFolder){
+    public CellProfiler(String inputImageFolder){
         this.inputImageFolder = inputImageFolder;
-        this.outputMetaDataFolder = outputMetaDataFolder;
+        this.outputMetaDataFolder = inputImageFolder + "/" + getDate();
+    }
+
+    public String getDate(){
+      Date cur = new Date();
+      SimpleDateFormat format = new SimpleDateFormat("MM-dd-yy_HH-mm-ss");
+      String dateString = cur.toString();
+      try{
+        dateString = format.format(cur);
+        
+      }
+      catch(Exception e){
+        System.out.println(e.toString());
+        dateString = "";
+      }
+      return dateString;
+
     }
 
 
