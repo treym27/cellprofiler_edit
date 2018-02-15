@@ -21,7 +21,7 @@ public class CommandUtil {
 	}
 	
     public String condenseDirectory(String dirPath) {
-    	System.out.println("Loading config directory");
+    	//System.out.println("Loading config directory");
     	try {
 	    	File folder = new File(dirPath);
 	    	File[] fileArr = folder.listFiles();

@@ -9,6 +9,14 @@ import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
+import java.io.FileWriter;
+import java.io.File;
+import java.io.IOException;
+import java.io.FileNotFoundException;
+
+import java.util.Scanner;
+import java.util.ArrayList;
+
 public class CellProfiler{
     private String inputImageFolder;
     private String outputMetaDataFolder;
@@ -65,13 +73,13 @@ public class CellProfiler{
 
     }
 
-    public void runCountingPipeline(){
+    //returns filtered csv
+    public String runCountingPipeline(){
         //create the new countling pipeline
         System.out.println("Starting Counting Process");
         String configCSV = this.outputMetaDataFolder + "/config/MacroCells.csv";
         String finalPipeline = PipelineFactory.constructPipeline(configCSV, this.outputMetaDataFolder);
         try{
-            System.out.println("Counting pipeline: " + finalPipeline);
             CommandUtil thisCommand = new CommandUtil(
                 this.findExecutable(), 
                 this.inputImageFolder, 
@@ -82,12 +90,22 @@ public class CellProfiler{
             Process process = Runtime.getRuntime().exec(thisCommand.getCommand());
             consumeBuffer(process);
             process.waitFor();
+            System.out.println(this.outputMetaDataFolder + "/FilterObjects.csv");
+
+            File filteredCSV = new File(this.outputMetaDataFolder + "/FilterObjects.csv");
+
             System.out.println("Finished Counting Process");
             thisCommand.deleteTemp(this.inputImageFolder + "Temp");
-        }
-        catch(Exception e){
+            if(filteredCSV.exists())
+                return this.outputMetaDataFolder + "/FilterObjects.csv";
 
         }
+        catch(Exception e){
+            return "WRONG";
+        }
+        
+        return "";
+        
 
     }
 
