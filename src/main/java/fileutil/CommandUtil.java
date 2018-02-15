@@ -17,10 +17,11 @@ public class CommandUtil {
 	}
 
 	public String getCommand() {
-		return this.programPath + " -c -r -i " + this.imagesPath + " -o " + this.outPath + " -p " + this.pipePath;
+		return this.programPath + " -c -i " + this.imagesPath + " -o " + this.outPath + " -p " + this.pipePath + " -L DEBUG";
 	}
 	
     public String condenseDirectory(String dirPath) {
+    	System.out.println("Loading config directory");
     	try {
 	    	File folder = new File(dirPath);
 	    	File[] fileArr = folder.listFiles();
@@ -46,14 +47,38 @@ public class CommandUtil {
 	    		File file = zList.get(i);
 	    		File newDir = new File(dirPath + "Temp\\");
 	    		boolean success = newDir.mkdir();
-	    		Files.copy(file.toPath(), (new File(dirPath + "Temp\\" + zList.get(i).getName())).toPath());
-	    		System.out.println(zList.get(i).getName());
-	    	}
-	    	return dirPath + "Temp\\";
+	    		File f = new File(dirPath + "Temp\\" + zList.get(i).getName());
+	    		if(!f.exists())
+	    			Files.copy(file.toPath(), (new File(dirPath + "Temp\\" + zList.get(i).getName())).toPath());
+	    		InputStream is = null;
+			    OutputStream os = null;
+			    try {
+			        is = new FileInputStream(file);
+			        os = new FileOutputStream(new File(dirPath + "Temp\\" + zList.get(i).getName()));
+			        byte[] buffer = new byte[1024];
+			        int length;
+			        while ((length = is.read(buffer)) > 0) {
+			            os.write(buffer, 0, length);
+			        }
+			    } finally {
+			        is.close();
+			        os.close();
+			    }
+
+			}
+			return dirPath + "Temp\\";
     	}
     	catch(IOException e) {
     		System.out.println(e);
     		return "0";
     	}
+    }
+    public void deleteTemp(String tempName) {
+    	File folder = new File(tempName);
+	    File[] fileArr = folder.listFiles();
+	    for(int i = 0; i < fileArr.length; i++) {
+	    	fileArr[i].delete();
+	    }
+	    folder.delete();
     }
 }
