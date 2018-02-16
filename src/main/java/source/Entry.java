@@ -11,16 +11,23 @@ public class Entry{
     public static void main(String args[]){
 
       long start_time = System.nanoTime();
+      boolean batch = Entry.shouldBatchProcess();
+      CountingEngine ce = new CountingEngine(Entry.selectDirectory(), batch);
 
-      CountingEngine ce = new CountingEngine(Entry.selectDirectory());
-      
       long elapse_time = System.nanoTime() - start_time;
       System.out.println("elapse_time in seconds: " + elapse_time * 1e-9);
 
     }
 
 
-
+    public static boolean shouldBatchProcess(){
+      int reply = JOptionPane.showConfirmDialog(
+        null, 
+        "Is this a batch process?",
+        "Cell Profiler Wrapper",
+        JOptionPane.YES_NO_OPTION);
+      return reply == JOptionPane.YES_OPTION;
+    }
 
 
 

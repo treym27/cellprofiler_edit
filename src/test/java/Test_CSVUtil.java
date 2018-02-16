@@ -104,6 +104,15 @@ public class Test_CSVUtil {
 
     }
 
+    @Test
+    public void testUniqueValues(){
+        System.out.println("Starting testUniqueValues...");
+
+        
+        String col = "TrackObjects_Label_30";
+        CSVUtil c = new CSVUtil("src/test/resources/config/FilterObjects.csv");
+        System.out.println("Unqiue Values: " + c.getUniqueValueCount(col));
+    }
 
     @After
     public void printSpacing(){

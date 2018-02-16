@@ -67,6 +67,7 @@ public class CellProfiler{
         }
         catch(Exception e) {
             System.out.println("Finished Config Process: Failed");
+            e.printStackTrace();
             return false;
         }
       
@@ -90,7 +91,7 @@ public class CellProfiler{
             Process process = Runtime.getRuntime().exec(thisCommand.getCommand());
             consumeBuffer(process);
             process.waitFor();
-            System.out.println(this.outputMetaDataFolder + "/FilterObjects.csv");
+            
 
             File filteredCSV = new File(this.outputMetaDataFolder + "/FilterObjects.csv");
 

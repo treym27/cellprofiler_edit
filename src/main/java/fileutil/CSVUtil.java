@@ -12,6 +12,7 @@ import java.nio.file.Paths;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 
 public class CSVUtil{
     private String fileName; 
@@ -146,6 +147,30 @@ public class CSVUtil{
         double fpIndex = sorted.length * perc; 
         return sorted[(int)fpIndex];
         
+
+    }
+
+
+    public int getUniqueValueCount(String column){
+        ArrayList<Double> list = new ArrayList<Double>();
+        for(CSVRecord cr : this.records){
+            Double d = null;
+            try{
+                d = Double.parseDouble(cr.get(column));
+                list.add(d);
+            }
+            catch(Exception e){
+                //number not found in string
+            }
+            
+        }
+
+        HashSet<Double> hs = new HashSet<Double>();
+        for(Double d : list){
+            hs.add(d);
+        }
+
+        return hs.size();
 
     }
 }
