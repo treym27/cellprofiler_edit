@@ -13,7 +13,7 @@ class MyFormatter extends Formatter {
 
         buf.append(calcDate(rec.getMillis()));
 
-        buf.append(formatMessage(rec));
+        buf.append(rec.getMessage());
 
         return buf.toString();
     }

@@ -10,7 +10,7 @@ import java.util.logging.SimpleFormatter;
 
 public class MyLogger {
     static private FileHandler fileTxt;
-    static private SimpleFormatter formatterTxt;
+    static private Formatter formatterTxt;
 
     static public void setup() throws IOException {
 
@@ -19,7 +19,7 @@ public class MyLogger {
         logger.setLevel(Level.INFO);
         fileTxt = new FileHandler("Logging.txt");
 
-        formatterTxt = new SimpleFormatter();
+        formatterTxt = new MyFormatter();
         fileTxt.setFormatter(formatterTxt);
         logger.addHandler(fileTxt);
     }
