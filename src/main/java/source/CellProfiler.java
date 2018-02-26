@@ -80,6 +80,7 @@ public class CellProfiler{
         System.out.println("Starting Counting Process");
         String configCSV = this.outputMetaDataFolder + "/config/MacroCells.csv";
         String finalPipeline = PipelineFactory.constructPipeline(configCSV, this.outputMetaDataFolder);
+        
         try{
             CommandUtil thisCommand = new CommandUtil(
                 this.findExecutable(), 
@@ -116,7 +117,13 @@ public class CellProfiler{
             new Thread() {
                 public void run() {
                     InputStream stream = process.getInputStream();
-                    try { while (stream.read() >= 0) {} } catch (Exception e) {}
+                    try { 
+                        char c = '0';
+                        int i = -1;
+                        while ((i = (int)stream.read()) != -1) {
+                            System.err.print((char)i);
+                        } 
+                    } catch (Exception e) {}
                 }
             }.start();
 

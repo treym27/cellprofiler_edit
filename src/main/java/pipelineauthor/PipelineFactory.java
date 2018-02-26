@@ -26,9 +26,11 @@ public class PipelineFactory{
         typicalMin *= 0.8;
         typicalMax *= 1.2;
         System.out.println("\tAdjusted: (" + typicalMin + "," + typicalMax + ")");
-        
+        int min = (int)typicalMin;
+        int max = (int)typicalMax;
         PipelineAuthor pa = new PipelineAuthor();
-        pa.addReplacementRule(new Replacement("@minman", typicalMin + "," + typicalMax));
+        pa.addReplacementRule(new Replacement("@minmax", min + "," + max));
+
         String output = pa.buildPipeline(outputDirectory);
         return output;
     }

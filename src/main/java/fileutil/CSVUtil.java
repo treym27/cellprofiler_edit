@@ -13,6 +13,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Collections;
 
 public class CSVUtil{
     private String fileName; 
@@ -170,7 +171,13 @@ public class CSVUtil{
             hs.add(d);
         }
 
-        return hs.size();
+        int max = -1;
+        for(Double d : hs){
+            if(d > max)
+                max =(int)(double)d;
+        }
+
+        return max;
 
     }
 }

@@ -34,12 +34,13 @@ public class PipelineAuthor{
 
 
     public String executeReplacements(String original){
-
+        String ret = original;
         for(Replacement r : this.replacements){
-            original = original.replace("@" + r.templateObjectName, r.templateObjectValue);
+            ret = ret.replaceAll(r.templateObjectName, r.templateObjectValue);
+
         }
 
-        return original;
+        return ret;
     }
 
     public String buildPipeline(String outputDirectory){

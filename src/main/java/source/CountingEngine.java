@@ -46,6 +46,7 @@ public class CountingEngine{
         if( cp.runConfigPipeline()){
 
             String s = cp.runCountingPipeline();
+            System.out.println("Final file output: " + s);
             CSVUtil c = new CSVUtil(s);
             int count = c.getUniqueValueCount("TrackObjects_Label_30");
             System.out.println("Final results from " + s);
