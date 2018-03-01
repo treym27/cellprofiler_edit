@@ -42,7 +42,9 @@ public class CountingEngine{
 
             for(String s : dirs) {
                 int count = this.analyzeStack(sourceDirectory + "\\" + s);
-                logger.log(" " + s + ": " + count);
+                if(count > -1) {
+                    logger.log(" " + s + ": " + count);
+                }
             }
         }
         else{
@@ -53,7 +55,9 @@ public class CountingEngine{
                 i--;
             }
             int count = this.analyzeStack(sourceDirectory);
-            logger.log(" " + s + ": " + count);
+            if(count > -1) {
+                logger.log(" " + s + ": " + count);
+            }
         }
 
     }

@@ -11,6 +11,8 @@ class MyFormatter extends Formatter {
     public String format(LogRecord rec) {
         StringBuffer buf = new StringBuffer(1000);
 
+        buf.append("\n");
+
         buf.append(calcDate(rec.getMillis()));
 
         buf.append(rec.getMessage());
