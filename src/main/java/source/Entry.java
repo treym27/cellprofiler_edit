@@ -3,19 +3,33 @@ import fileutil.CSVUtil;
 import fileutil.CommandUtil;
 import java.io.IOException;
 import java.lang.*;
+import mylogging.UseLogger;
+import mylogging.MyLogger;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class Entry{
     public static void main(String args[]){
+      UseLogger logger = new UseLogger();
+      try {
+          MyLogger.setup();
+      } catch (IOException e) {
+          e.printStackTrace();
+          throw new RuntimeException("Problems with creating the log files");
+      }
+      logger.log(" Cell Profiler Initialized.");
+      logger.enterSection();
+        long start_time = System.nanoTime();
+        boolean batch = Entry.shouldBatchProcess();
+        CountingEngine ce = new CountingEngine(Entry.selectDirectory(), batch);
 
-      long start_time = System.nanoTime();
-      boolean batch = Entry.shouldBatchProcess();
-      CountingEngine ce = new CountingEngine(Entry.selectDirectory(), batch);
+        long elapse_time = System.nanoTime() - start_time;
+        System.out.println("elapse_time in seconds: " + elapse_time * 1e-9);
+        logger.exitSection();
 
-      long elapse_time = System.nanoTime() - start_time;
-      System.out.println("elapse_time in seconds: " + elapse_time * 1e-9);
+      logger.log(" Cell Profiler completed.");
+      
 
     }
 

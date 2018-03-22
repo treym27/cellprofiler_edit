@@ -9,11 +9,23 @@ import mylogging.MyLogger;
 public class UseLogger {
     private final static Logger LOGGER = Logger.getLogger(MyLogger.class.getName());
 
-
+    private static int tabCount = 0;
     public void log(String message) {
 
         LOGGER.setLevel(Level.ALL);
-        LOGGER.info(message);
+        String tabs = "";
+        for(int i = 0; i < tabCount; i++){
+            tabs += "\t";
+        }
+        LOGGER.info(tabs + message);
+    }
+
+    public void enterSection(){
+        UseLogger.tabCount++;
+    }
+
+    public void exitSection(){
+        UseLogger.tabCount--;
     }
 
 }

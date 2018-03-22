@@ -1,6 +1,8 @@
 package source;
 import fileutil.CSVUtil;
 import fileutil.CommandUtil;
+import mylogging.UseLogger;
+import mylogging.MyLogger;
 import java.io.IOException;
 import pipelineauthor.PipelineFactory;
 import java.lang.Thread;
@@ -44,8 +46,16 @@ public class CellProfiler{
 
 
     public boolean runConfigPipeline(){
-        System.out.println("Starting Config Process");
+        UseLogger logger = new UseLogger();
         try {
+            MyLogger.setup();
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Problems with creating the log files");
+        }
+        try {
+            logger.log("Starting Config process.");
+            logger.enterSection();
             CommandUtil thisCommand = new CommandUtil(
                 this.findExecutable(), 
                 this.inputImageFolder, 
@@ -58,10 +68,13 @@ public class CellProfiler{
             Process process = Runtime.getRuntime().exec(command);
             consumeBuffer(process);
             process.waitFor();
-            System.out.println("Finished Config Process:Success");
+
+            
             thisCommand.deleteTemp(this.inputImageFolder + "Temp");
+
             thisCommand = null;
-    
+            logger.exitSection();
+            logger.log("Finished Config Process: Success");
             return true;
         
         }
@@ -77,7 +90,15 @@ public class CellProfiler{
     //returns filtered csv
     public String runCountingPipeline(){
         //create the new countling pipeline
-        System.out.println("Starting Counting Process");
+        UseLogger logger = new UseLogger();
+        try {
+            MyLogger.setup();
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Problems with creating the log files");
+        }
+        logger.log("Starting Counting Process");
+        logger.enterSection();
         String configCSV = this.outputMetaDataFolder + "/config/MacroCells.csv";
         String finalPipeline = PipelineFactory.constructPipeline(configCSV, this.outputMetaDataFolder);
         
@@ -95,14 +116,22 @@ public class CellProfiler{
             
 
             File filteredCSV = new File(this.outputMetaDataFolder + "/FilterObjects.csv");
-
-            System.out.println("Finished Counting Process");
+            
             thisCommand.deleteTemp(this.inputImageFolder + "Temp");
-            if(filteredCSV.exists())
+            if(filteredCSV.exists()){
+                logger.exitSection();
+                logger.log("Finished Counting Process: Success");
                 return this.outputMetaDataFolder + "/FilterObjects.csv";
+            }
+            else{
+                logger.exitSection();
+                logger.log("Finished Counting Process: Failed to create final count csv");
+            }
 
         }
         catch(Exception e){
+            logger.exitSection();
+            logger.log("Finished Counting Process: Failed exception occured.");
             return "WRONG";
         }
         
