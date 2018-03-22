@@ -63,46 +63,10 @@ Groups:[module_num:4|svn_version:\'Unknown\'|variable_revision_number:2|show_win
     grouping metadata count:1
     Metadata category:None
 
-CorrectIlluminationCalculate:[module_num:5|svn_version:\'Unknown\'|variable_revision_number:2|show_window:False|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
-    Select the input image:OrigBlue
-    Name the output image:IllumBlue
-    Select how the illumination function is calculated:Regular
-    Dilate objects in the final averaged image?:No
-    Dilation radius:1
-    Block size:60
-    Rescale the illumination function?:Yes
-    Calculate function for each image individually, or based on all images?:Each
-    Smoothing method:Convex Hull
-    Method to calculate smoothing filter size:Automatic
-    Approximate object diameter:10
-    Smoothing filter size:10
-    Retain the averaged image?:No
-    Name the averaged image:IllumBlueAvg
-    Retain the dilated image?:No
-    Name the dilated image:IllumBlueDilated
-    Automatically calculate spline parameters?:Yes
-    Background mode:auto
-    Number of spline points:5
-    Background threshold:2.0
-    Image resampling factor:2.0
-    Maximum number of iterations:40
-    Residual value for convergence:0.001
-
-CorrectIlluminationApply:[module_num:6|svn_version:\'Unknown\'|variable_revision_number:3|show_window:False|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
-    Select the input image:OrigBlue
-    Name the output image:CorrBlue
-    Select the illumination function:IllumBlue
-    Select how the illumination function is applied:Divide
-
-MedianFilter:[module_num:7|svn_version:\'Unknown\'|variable_revision_number:1|show_window:False|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
-    Select the input image:CorrBlue
-    Name the output image:MedianFilterBlue
-    Window:5
-
-IdentifyPrimaryObjects:[module_num:8|svn_version:\'Unknown\'|variable_revision_number:13|show_window:False|notes:\x5B\'The dna channel, e.g. DAPI, is perfect for segmenting individual cells. Given that these cells are well spaced, declumping cells by shape is effective.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:False|wants_pause:False]
+IdentifyPrimaryObjects:[module_num:5|svn_version:\'Unknown\'|variable_revision_number:13|show_window:True|notes:\x5B\'The dna channel, e.g. DAPI, is perfect for segmenting individual cells. Given that these cells are well spaced, declumping cells by shape is effective.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:False|wants_pause:False]
     Select the input image:OrigRed
     Name the primary objects to be identified:CytoFoci
-    Typical diameter of objects, in pixel units (Min,Max):8,80
+    Typical diameter of objects, in pixel units (Min,Max):@minmax
     Discard objects outside the diameter range?:Yes
     Discard objects touching the border of the image?:Yes
     Method to distinguish clumped objects:Shape
@@ -134,17 +98,48 @@ IdentifyPrimaryObjects:[module_num:8|svn_version:\'Unknown\'|variable_revision_n
     # of deviations:2.0
     Thresholding method:Otsu
 
+RescaleIntensity:[module_num:6|svn_version:\'Unknown\'|variable_revision_number:3|show_window:True|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Select the input image:OrigBlue
+    Name the output image:RescaleIntensity
+    Rescaling method:Stretch each image to use the full intensity range
+    Method to calculate the minimum intensity:Custom
+    Method to calculate the maximum intensity:Custom
+    Lower intensity limit for the input image:0.0
+    Upper intensity limit for the input image:1.0
+    Intensity range for the input image:0.0,1.0
+    Intensity range for the output image:0.0,1.0
+    Select image to match in maximum intensity:None
+    Divisor value:1.0
+    Divisor measurement:None
+
+Resize:[module_num:7|svn_version:\'Unknown\'|variable_revision_number:4|show_window:True|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Select the input image:RescaleIntensity
+    Name the output image:Resize
+    Resizing method:Resize by specifying desired final dimensions
+    Resizing factor:0.25
+    Width of the final image:1920
+    Height of the final image:1440
+    Interpolation method:Nearest Neighbor
+    Method to specify the dimensions:Manual
+    Select the image with the desired dimensions:None
+    Additional image count:0
+
+MedianFilter:[module_num:8|svn_version:\'Unknown\'|variable_revision_number:1|show_window:True|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Select the input image:Resize
+    Name the output image:MedianFilter
+    Window:5
+
 IdentifyPrimaryObjects:[module_num:9|svn_version:\'Unknown\'|variable_revision_number:13|show_window:True|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
-    Select the input image:MedianFilterBlue
+    Select the input image:MedianFilter
     Name the primary objects to be identified:MacroCells
-    Typical diameter of objects, in pixel units (Min,Max):@minmax
+    Typical diameter of objects, in pixel units (Min,Max):27,61
     Discard objects outside the diameter range?:No
     Discard objects touching the border of the image?:Yes
     Method to distinguish clumped objects:Intensity
     Method to draw dividing lines between clumped objects:Intensity
     Size of smoothing filter:10
-    Suppress local maxima that are closer than this minimum allowed distance:20
-    Speed up by using lower-resolution image to find local maxima?:Yes
+    Suppress local maxima that are closer than this minimum allowed distance:7.0
+    Speed up by using lower-resolution image to find local maxima?:No
     Fill holes in identified objects?:After both thresholding and declumping
     Automatically calculate size of smoothing filter for declumping?:Yes
     Automatically calculate minimum allowed distance between local maxima?:Yes
@@ -154,31 +149,26 @@ IdentifyPrimaryObjects:[module_num:9|svn_version:\'Unknown\'|variable_revision_n
     Threshold setting version:10
     Threshold strategy:Global
     Thresholding method:Otsu
-    Threshold smoothing scale:0
-    Threshold correction factor:1
+    Threshold smoothing scale:1.1
+    Threshold correction factor:1.0
     Lower and upper bounds on threshold:0.0,1.0
     Manual threshold:0.0
     Select the measurement to threshold with:None
-    Two-class or three-class thresholding?:Three classes
+    Two-class or three-class thresholding?:Two classes
     Assign pixels in the middle intensity class to the foreground or the background?:Background
     Size of adaptive window:50
     Lower outlier fraction:0.05
     Upper outlier fraction:0.05
     Averaging method:Mean
     Variance method:Standard deviation
-    # of deviations:1
+    # of deviations:2.0
     Thresholding method:Otsu
 
-MeasureObjectSizeShape:[module_num:10|svn_version:\'Unknown\'|variable_revision_number:1|show_window:False|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:True]
+MeasureObjectSizeShape:[module_num:10|svn_version:\'Unknown\'|variable_revision_number:1|show_window:False|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
     Select objects to measure:MacroCells
     Calculate the Zernike features?:Yes
 
-MeasureObjectIntensity:[module_num:11|svn_version:\'Unknown\'|variable_revision_number:3|show_window:False|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
-    Hidden:1
-    Select an image to measure:OrigBlue
-    Select objects to measure:MacroCells
-
-FilterObjects:[module_num:12|svn_version:\'Unknown\'|variable_revision_number:8|show_window:True|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+FilterObjects:[module_num:11|svn_version:\'Unknown\'|variable_revision_number:8|show_window:True|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
     Select the objects to filter:MacroCells
     Name the output objects:FilterObjects
     Select the filtering mode:Measurements
@@ -187,26 +177,16 @@ FilterObjects:[module_num:12|svn_version:\'Unknown\'|variable_revision_number:8|
     Select the location of the rules or classifier file:Elsewhere...\x7C
     Rules or classifier file name:rules.txt
     Class number:1
-    Measurement count:3
+    Measurement count:1
     Additional object count:0
     Assign overlapping child to:Both parents
     Select the measurement to filter by:AreaShape_MaxFeretDiameter
     Filter using a minimum measurement value?:Yes
-    Minimum value:10
-    Filter using a maximum measurement value?:No
-    Maximum value:1.0
-    Select the measurement to filter by:AreaShape_Area
-    Filter using a minimum measurement value?:Yes
-    Minimum value:50
-    Filter using a maximum measurement value?:No
-    Maximum value:1.0
-    Select the measurement to filter by:AreaShape_Area
-    Filter using a minimum measurement value?:Yes
-    Minimum value:30
+    Minimum value:15
     Filter using a maximum measurement value?:No
     Maximum value:1.0
 
-TrackObjects:[module_num:13|svn_version:\'Unknown\'|variable_revision_number:7|show_window:True|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+TrackObjects:[module_num:12|svn_version:\'Unknown\'|variable_revision_number:7|show_window:False|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
     Choose a tracking method:Overlap
     Select the objects to track:FilterObjects
     Select object measurement to use for tracking:None
@@ -227,7 +207,7 @@ TrackObjects:[module_num:13|svn_version:\'Unknown\'|variable_revision_number:7|s
     Maximum temporal gap, in frames:5
     Filter objects by lifetime?:Yes
     Filter using a minimum lifetime?:Yes
-    Minimum lifetime:2
+    Minimum lifetime:3
     Filter using a maximum lifetime?:No
     Maximum lifetime:100
     Mitosis alternative cost:80
@@ -237,13 +217,13 @@ TrackObjects:[module_num:13|svn_version:\'Unknown\'|variable_revision_number:7|s
     Cost of cell to empty matching:15.0
     Weight of area difference in function matching cost:25.0
 
-ConvertObjectsToImage:[module_num:14|svn_version:\'Unknown\'|variable_revision_number:1|show_window:False|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+ConvertObjectsToImage:[module_num:13|svn_version:\'Unknown\'|variable_revision_number:1|show_window:False|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
     Select the input objects:FilterObjects
     Name the output image:CellImage
     Select the color format:Color
     Select the colormap:Default
 
-RelateObjects:[module_num:15|svn_version:\'Unknown\'|variable_revision_number:3|show_window:False|notes:\x5B\'The ph3 probe and dna stain overlap with each other, so this co-localization can be used to classify cells. This is relatioship is ennumerated by the RelateObjects module and the labels from one set of objects is mapped into another set of objects.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:False|wants_pause:False]
+RelateObjects:[module_num:14|svn_version:\'Unknown\'|variable_revision_number:3|show_window:False|notes:\x5B\'The ph3 probe and dna stain overlap with each other, so this co-localization can be used to classify cells. This is relatioship is ennumerated by the RelateObjects module and the labels from one set of objects is mapped into another set of objects.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:False|wants_pause:False]
     Parent objects:MacroCells
     Child objects:CytoFoci
     Calculate child-parent distances?:Centroid
@@ -251,11 +231,11 @@ RelateObjects:[module_num:15|svn_version:\'Unknown\'|variable_revision_number:3|
     Calculate distances to other parents?:No
     Parent name:None
 
-DisplayDataOnImage:[module_num:16|svn_version:\'Unknown\'|variable_revision_number:6|show_window:False|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+DisplayDataOnImage:[module_num:15|svn_version:\'Unknown\'|variable_revision_number:6|show_window:False|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
     Display object or image measurements?:Object
     Select the input objects:FilterObjects
     Measurement to display:TrackObjects_Label_30
-    Select the image on which to display the measurements:OrigBlue
+    Select the image on which to display the measurements:Resize
     Text color:red
     Name the output image that has the measurements displayed:DisplayImage_DDOI
     Font size (points):10
@@ -268,7 +248,7 @@ DisplayDataOnImage:[module_num:16|svn_version:\'Unknown\'|variable_revision_numb
     Color map scale:Use this image\'s measurement range
     Color map range:0.0,1.0
 
-OverlayOutlines:[module_num:17|svn_version:\'Unknown\'|variable_revision_number:4|show_window:False|notes:\x5B\'The intensity measurements can be exported into a spreadsheet, but sometimes a useful way to process the measurements is to see them overlayed on top of the objects of interest, in this the nuclei.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+OverlayOutlines:[module_num:16|svn_version:\'Unknown\'|variable_revision_number:4|show_window:False|notes:\x5B\'The intensity measurements can be exported into a spreadsheet, but sometimes a useful way to process the measurements is to see them overlayed on top of the objects of interest, in this the nuclei.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
     Display outlines on a blank image?:No
     Select image on which to display outlines:DisplayImage_DDOI
     Name the output image:OverlayOutlines
@@ -276,7 +256,13 @@ OverlayOutlines:[module_num:17|svn_version:\'Unknown\'|variable_revision_number:
     Select method to determine brightness of outlines:Max of image
     How to outline:Thick
     Select outline color:blue
-    Select objects to display:FilterObjects
+    Select objects to display:MacroCells
+
+OverlayObjects:[module_num:17|svn_version:\'Unknown\'|variable_revision_number:1|show_window:False|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Input:Resize
+    Name the output image:OverlayObjects
+    Objects:FilterObjects
+    Opacity:0.1
 
 SaveImages:[module_num:18|svn_version:\'Unknown\'|variable_revision_number:13|show_window:False|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
     Select the type of image to save:Image

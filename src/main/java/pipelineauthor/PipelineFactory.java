@@ -23,8 +23,8 @@ public class PipelineFactory{
         double typicalMin =  c.getColumnAverage("AreaShape_MinFeretDiameter");
         double typicalMax =  c.getColumnAverage("AreaShape_MaxFeretDiameter");
         System.out.println("\tActual:   (" + typicalMin + "," + typicalMax + ")");
-        typicalMin *= 0.8;
-        typicalMax *= 1.2;
+        typicalMin *= 1.0;
+        typicalMax *= 1.5;
         System.out.println("\tAdjusted: (" + typicalMin + "," + typicalMax + ")");
         int min = (int)typicalMin;
         int max = (int)typicalMax;
