@@ -2,6 +2,9 @@ package source;
 
 import fileutil.CSVUtil;
 import fileutil.CommandUtil;
+import mylogging.UseLogger;
+import mylogging.MyLogger;
+
 import java.io.IOException;
 import java.lang.*;
 
@@ -17,6 +20,14 @@ public class CountingEngine{
     
     public CountingEngine(String sourceDirectory, boolean batch){
 
+        UseLogger logger = new UseLogger();
+        try {
+            MyLogger.setup();
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Problems with creating the log files");
+        }
+
         if(batch){
             
             File f = new File(sourceDirectory);
@@ -29,11 +40,24 @@ public class CountingEngine{
             //eventually, replace this with a function to get all subfolders
             
 
-            for(String s : dirs)
-                this.analyzeStack(sourceDirectory + "\\" + s);
+            for(String s : dirs) {
+                int count = this.analyzeStack(sourceDirectory + "\\" + s);
+                if(count > -1) {
+                    logger.log(" " + s + ": " + count);
+                }
+            }
         }
         else{
-            this.analyzeStack(sourceDirectory);
+            String s = "";
+            int i = sourceDirectory.length() - 1;
+            while(sourceDirectory.charAt(i) != '/' && sourceDirectory.charAt(i) != '\\' && i >= 0) {
+                s = sourceDirectory.charAt(i) + s;
+                i--;
+            }
+            int count = this.analyzeStack(sourceDirectory);
+            if(count > -1) {
+                logger.log(" " + s + ": " + count);
+            }
         }
 
     }
