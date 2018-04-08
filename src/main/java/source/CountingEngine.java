@@ -18,12 +18,12 @@ import java.io.FilenameFilter;
 //this class is used to handle different stacks, given a parent directory
 
 public class CountingEngine{
-    ArrayList<String> setNames;
-    ArrayList<Integer> setCounts;
+    ArrayList<CellProfilerResults> stacks;
+    ArrayList<Integer> blueCounts;
     
     public CountingEngine(String sourceDirectory, boolean batch){
-        this.setNames = new ArrayList<String>();
-        this.setCounts = new ArrayList<Integer>();
+        this.stacks = new ArrayList<CellProfilerResults>();
+        
 
         UseLogger logger = new UseLogger();
         try {
@@ -43,16 +43,16 @@ public class CountingEngine{
                 }
             });
             //eventually, replace this with a function to get all subfolders
-            
-
             for(String s : dirs) {
                 logger.log("Starting " + s + " Stack");
                 logger.enterSection();
-                int count = this.analyzeStack(sourceDirectory + "\\" + s);
-                    if(count > -1) {
-                        this.setNames.add(s);
-                        this.setCounts.add(count);
-                        logger.log("Cell Count: " + count);
+                CellProfilerResults results = this.analyzeStack(sourceDirectory + "\\" + s);
+                    if(results.getBlueCount() > -1) {
+                        this.stacks.add(results);
+
+                        
+                        logger.log("Blue Cell Count: " + results.getBlueCount());
+                        logger.log("Red Cell Count: " + results.getRedCount());
                     }
                     else
                         logger.log("Cell count failed.");
@@ -60,20 +60,21 @@ public class CountingEngine{
                 logger.log(s + " stack completed.");
             }
         }
-        else{
+        else{//singleton processing 
             String s = "";
             int i = sourceDirectory.length() - 1;
             while(sourceDirectory.charAt(i) != '/' && sourceDirectory.charAt(i) != '\\' && i >= 0) {
                 s = sourceDirectory.charAt(i) + s;
                 i--;
             }
+
             logger.log("Starting " + s + " Stack");
             logger.enterSection();
-                int count = this.analyzeStack(sourceDirectory);
-                if(count > -1) {
-                    this.setNames.add(s);
-                    this.setCounts.add(count);
-                    logger.log("Cell count: " + count);
+                CellProfilerResults results = this.analyzeStack(sourceDirectory);
+                if(results.getBlueCount() > -1) {
+                    this.stacks.add(results);
+                    logger.log("Blue Cell Count: " + results.getBlueCount());
+                    logger.log("Red Cell Count: " + results.getRedCount());
                 }
                 else
                     logger.log("Cell count failed.");
@@ -87,8 +88,8 @@ public class CountingEngine{
     }
 
     //returns cell count of the stack
-    public int analyzeStack(String sourceDirectory){
-        
+    public CellProfilerResults analyzeStack(String sourceDirectory){
+        CellProfilerResults cpr = new CellProfilerResults(sourceDirectory);
         CellProfiler cp = new CellProfiler(
             sourceDirectory
         );
@@ -97,12 +98,10 @@ public class CountingEngine{
             String s = cp.runCountingPipeline();
 
             CSVUtil c = new CSVUtil(s);
-            int count = c.getUniqueValueCount("TrackObjects_Label_30");
-            
-            return count;
-        
+            int blueCount = c.getUniqueValueCount("TrackObjects_Label_30");
+            cpr.setBlueCount(blueCount);
         }
-        return -1;
+        return cpr;
 
     }
 
@@ -118,8 +117,12 @@ public class CountingEngine{
         logger.log("");
         logger.log("Final Successful Counts: ");
         logger.enterSection();
-            for(int i = 0; i < this.setNames.size(); i++){
-                logger.log(this.setNames.get(i) + " : " + this.setCounts.get(i));
+            for(int i = 0; i < this.stacks.size(); i++){
+                logger.log(this.stacks.get(i).getName() + " :");
+                logger.enterSection();
+                    logger.log("Blue Cell Count: " + this.stacks.get(i).getBlueCount());
+                    logger.log("Red Cell Count: " + this.stacks.get(i).getRedCount());
+                logger.exitSection();
             }
 
         logger.exitSection();
