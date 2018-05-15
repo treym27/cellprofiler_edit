@@ -16,8 +16,20 @@ public class CommandUtil {
 		this.pipePath = pipePath;
 	}
 
-	public String getCommand() {
-		return this.programPath + " -c -i " + this.imagesPath + " -o " + this.outPath + " -p " + this.pipePath + " -L DEBUG";
+	public String[] getCommand() {
+		String[] com = new String[9];
+		//com[0] = "cmd /c start"
+		com[0] = this.programPath;
+		com[1] = "-c";
+		com[2] = "-i";
+		com[3] = this.imagesPath;
+		com[4] = "-o";
+		com[5] = this.outPath;
+		com[6] = "-p";
+		com[7] = this.pipePath;
+		com[8] = "-L DEBUG";
+		return com;
+		//return this.programPath + " -c -i " + this.imagesPath + " -o " + this.outPath + " -p " + this.pipePath + " -L DEBUG";
 	}
 	
     public String condenseDirectory(String dirPath) {

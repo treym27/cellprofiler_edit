@@ -60,10 +60,10 @@ public class CellProfiler{
                 this.findExecutable(), 
                 this.inputImageFolder, 
                 this.outputMetaDataFolder + "/config", 
-                "C:/Users/Steven/Desktop/Research/CellProfilerWrapper/Pipelines/Configuration/Config.cppipe"
+                "Pipelines/Configuration/Config.cppipe"
                 );
             
-            String command = thisCommand.getCommand();
+            String[] command = thisCommand.getCommand();
             
             Process process = Runtime.getRuntime().exec(command);
             consumeBuffer(process);
@@ -150,7 +150,7 @@ public class CellProfiler{
                         char c = '0';
                         int i = -1;
                         while ((i = (int)stream.read()) != -1) {
-                            System.err.print((char)i);
+                            System.out.print((char)i);
                         } 
                     } catch (Exception e) {}
                 }
@@ -159,7 +159,12 @@ public class CellProfiler{
             new Thread() {
                 public void run() {
                     InputStream stream = process.getErrorStream();
-                    try { while (stream.read() >= 0) {} } catch (Exception e) {}
+                    try { 
+                        int i = -1;
+                        while ((i = (int)stream.read()) != -1) {
+                            System.out.print((char)i);
+                        } 
+                    } catch (Exception e) {}
                 }
             }.start();
         } catch(Exception e) {
@@ -169,8 +174,9 @@ public class CellProfiler{
 
 
     public String findExecutable(){
+         
         return "C:/Program Files (x86)/CellProfiler/CellProfiler.exe";
-    }
+  }
 
     // | / - \ | / - \
     // 
