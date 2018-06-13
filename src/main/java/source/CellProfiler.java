@@ -6,6 +6,7 @@ import mylogging.MyLogger;
 import java.io.IOException;
 import pipelineauthor.PipelineFactory;
 import java.lang.Thread;
+import java.lang.ProcessBuilder;
 import java.io.InputStream;
 import java.util.Date;
 import java.text.DateFormat;
@@ -63,9 +64,8 @@ public class CellProfiler{
                 "Pipelines/Configuration/Config.cppipe"
                 );
             
-            String[] command = thisCommand.getCommand();
             
-            Process process = Runtime.getRuntime().exec(command);
+            Process process = Runtime.getRuntime().exec(thisCommand.getCommand());
             consumeBuffer(process);
             process.waitFor();
 
@@ -158,9 +158,10 @@ public class CellProfiler{
 
             new Thread() {
                 public void run() {
+                    char c = '0';
+                    int i = -1;
                     InputStream stream = process.getErrorStream();
-                    try { 
-                        int i = -1;
+                    try {
                         while ((i = (int)stream.read()) != -1) {
                             System.out.print((char)i);
                         } 
@@ -174,8 +175,12 @@ public class CellProfiler{
 
 
     public String findExecutable(){
-         
-        return "C:/Program Files (x86)/CellProfiler/CellProfiler.exe";
+        System.out.println("\n\n\n\nPLEASE CHANGE ME\n\n\n\n");
+        //due to a new windows update in managing java processes
+        //Cellprofiler.exe cant be installed in C:/Program Files
+        //I would suggest installing it on desktop
+        //change the below to reflect new destination
+        return "C:/Users/Steven/Desktop/CellProfiler/CellProfiler.exe";
   }
 
     // | / - \ | / - \

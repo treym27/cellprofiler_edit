@@ -16,19 +16,19 @@ public class CommandUtil {
 		this.pipePath = pipePath;
 	}
 
-	public String[] getCommand() {
-		String[] com = new String[9];
-		//com[0] = "cmd /c start"
+	public String getCommand() {
+		String[] com = new String[6];
+		//com[0] = "cmd /c "
 		com[0] = this.programPath;
-		com[1] = "-c";
-		com[2] = "-i";
-		com[3] = this.imagesPath;
-		com[4] = "-o";
-		com[5] = this.outPath;
-		com[6] = "-p";
-		com[7] = this.pipePath;
-		com[8] = "-L DEBUG";
-		return com;
+		com[1] = " -c ";
+		com[2] = " -i " + this.imagesPath;
+		com[3] = " -o " + this.outPath ;
+		com[4] = " -p " + this.pipePath;
+		com[5] = " -L DEBUG";
+		//for(int i = 0; i < 6; i++)
+		//	System.out.print(com[i]);
+		//System.out.println();
+		return com[0] + com[1] + com[2] + com[3] + com[4] + com[5];
 		//return this.programPath + " -c -i " + this.imagesPath + " -o " + this.outPath + " -p " + this.pipePath + " -L DEBUG";
 	}
 	
