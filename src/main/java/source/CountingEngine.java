@@ -99,6 +99,7 @@ public class CountingEngine{
 
             CSVUtil c = new CSVUtil(s);
             int blueCount = c.getUniqueValueCount("TrackObjects_Label_30");
+            //insert something for red count here
             cpr.setBlueCount(blueCount);
         }
         return cpr;
@@ -146,7 +147,7 @@ public class CountingEngine{
         if(reset){
 
             double min =  Double.parseDouble(JOptionPane.showInputDialog(null," Enter min modifier: "));
-            double max =  Double.parseDouble(JOptionPane.showInputDialog(null," Enter min modifier: "));
+            double max =  Double.parseDouble(JOptionPane.showInputDialog(null," Enter max modifier: "));
             if(min >= 0 && max >= 0){
                 PipelineFactory.minModifier = min;
                 PipelineFactory.maxModifier = max;

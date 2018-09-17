@@ -1,0 +1,64 @@
+
+Jul 13,2018 20:20			Constructing final pipeline.
+Jul 13,2018 20:20				 Calculating averages
+Jul 13,2018 20:20					Actual:   (46.95916928537352,69.47692025581206)
+Jul 13,2018 20:20					Adjusted: (23.47958464268676,69.47692025581206)
+Jul 13,2018 20:20			Final pipeline construction completed.
+Jul 13,2018 20:25		Finished Counting Process: Success
+Jul 13,2018 20:25		Blue Cell Count: 245
+Jul 13,2018 20:25		Red Cell Count: -1
+Jul 13,2018 20:25	Ricen stack completed.
+Jul 13,2018 20:25	Starting Rick Stack
+Jul 13,2018 20:25		Starting Config process.
+Jul 13,2018 20:31		Finished Config Process: Success
+Jul 13,2018 20:31		Starting Counting Process
+Jul 13,2018 20:31			Constructing final pipeline.
+Jul 13,2018 20:31				 Calculating averages
+Jul 13,2018 20:31					Actual:   (48.88714241006563,71.16912260796182)
+Jul 13,2018 20:31					Adjusted: (24.443571205032814,71.16912260796182)
+Jul 13,2018 20:31			Final pipeline construction completed.
+Jul 13,2018 20:39		Finished Counting Process: Success
+Jul 13,2018 20:39		Blue Cell Count: 250
+Jul 13,2018 20:39		Red Cell Count: -1
+Jul 13,2018 20:39	Rick stack completed.
+Jul 13,2018 20:39	Starting Vincent Stack
+Jul 13,2018 20:39		Starting Config process.
+Jul 13,2018 20:39			Cell count failed.
+Jul 13,2018 20:39		Vincent stack completed.
+Jul 13,2018 20:39		
+Jul 13,2018 20:39		
+Jul 13,2018 20:39		Final Successful Counts: 
+Jul 13,2018 20:39			C:\Users\User\Documents\batch\Buyout :
+Jul 13,2018 20:39				Blue Cell Count: 132
+Jul 13,2018 20:39				Red Cell Count: -1
+Jul 13,2018 20:39			C:\Users\User\Documents\batch\Christan :
+Jul 13,2018 20:39				Blue Cell Count: 267
+Jul 13,2018 20:39				Red Cell Count: -1
+Jul 13,2018 20:39			C:\Users\User\Documents\batch\Combo :
+Jul 13,2018 20:39				Blue Cell Count: 130
+Jul 13,2018 20:39				Red Cell Count: -1
+Jul 13,2018 20:39			C:\Users\User\Documents\batch\OneMinute :
+Jul 13,2018 20:39				Blue Cell Count: 100
+Jul 13,2018 20:39				Red Cell Count: -1
+Jul 13,2018 20:39			C:\Users\User\Documents\batch\Phillip :
+Jul 13,2018 20:39				Blue Cell Count: 132
+Jul 13,2018 20:39				Red Cell Count: -1
+Jul 13,2018 20:39			C:\Users\User\Documents\batch\ProblemDog :
+Jul 13,2018 20:39				Blue Cell Count: 160
+Jul 13,2018 20:39				Red Cell Count: -1
+Jul 13,2018 20:39			C:\Users\User\Documents\batch\Psuedoephedrine :
+Jul 13,2018 20:39				Blue Cell Count: 269
+Jul 13,2018 20:39				Red Cell Count: -1
+Jul 13,2018 20:39			C:\Users\User\Documents\batch\RapidDog :
+Jul 13,2018 20:39				Blue Cell Count: 155
+Jul 13,2018 20:39				Red Cell Count: -1
+Jul 13,2018 20:39			C:\Users\User\Documents\batch\Rhee :
+Jul 13,2018 20:39				Blue Cell Count: 141
+Jul 13,2018 20:39				Red Cell Count: -1
+Jul 13,2018 20:39			C:\Users\User\Documents\batch\Ricen :
+Jul 13,2018 20:39				Blue Cell Count: 245
+Jul 13,2018 20:39				Red Cell Count: -1
+Jul 13,2018 20:39			C:\Users\User\Documents\batch\Rick :
+Jul 13,2018 20:39				Blue Cell Count: 250
+Jul 13,2018 20:39				Red Cell Count: -1
+Jul 13,2018 20:39	 Cell Profiler completed.

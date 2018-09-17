@@ -14,8 +14,8 @@ public class CellProfilerResults{
     }
 
     public String getName(){
-        return this.stackName;
-    }
+    return this.stackName;
+}
 
     public int getBlueCount(){
         return this.blueCount;

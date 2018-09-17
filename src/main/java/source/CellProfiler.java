@@ -175,12 +175,11 @@ public class CellProfiler{
 
 
     public String findExecutable(){
-        System.out.println("\n\n\n\nPLEASE CHANGE ME\n\n\n\n");
         //due to a new windows update in managing java processes
         //Cellprofiler.exe cant be installed in C:/Program Files
         //I would suggest installing it on desktop
         //change the below to reflect new destination
-        return "C:/Users/Steven/Desktop/CellProfiler/CellProfiler.exe";
+        return "C:/Users/User/Desktop/executable/CellProfiler.exe";
   }
 
     // | / - \ | / - \

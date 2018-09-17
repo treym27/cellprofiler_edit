@@ -47,7 +47,7 @@ public class Entry{
 
     public static String selectDirectory(){
       JFileChooser chooser = new JFileChooser();
-      String sourceDirectory = "";//"C:/Users/Steven/Desktop/Research/FARSIGHTTESTS/WORKING/Test_Images_Profiler/Batch/Buyout";
+      String sourceDirectory = "";
       
       chooser.setDialogTitle("Select Stack Directory");
       chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);

@@ -1,0 +1,143 @@
+
+Jul 13,2018 19:45		Starting Counting Process
+Jul 13,2018 19:45			Constructing final pipeline.
+Jul 13,2018 19:45				 Calculating averages
+Jul 13,2018 19:45					Actual:   (32.81246637452315,48.739896294148295)
+Jul 13,2018 19:45					Adjusted: (16.406233187261574,48.739896294148295)
+Jul 13,2018 19:45			Final pipeline construction completed.
+Jul 13,2018 19:47		Finished Counting Process: Success
+Jul 13,2018 19:47		Blue Cell Count: 100
+Jul 13,2018 19:47		Red Cell Count: -1
+Jul 13,2018 19:47	OneMinute stack completed.
+Jul 13,2018 19:47	Starting Phillip Stack
+Jul 13,2018 19:47		Starting Config process.
+Jul 13,2018 19:48		Finished Config Process: Success
+Jul 13,2018 19:48		Starting Counting Process
+Jul 13,2018 19:48			Constructing final pipeline.
+Jul 13,2018 19:48				 Calculating averages
+Jul 13,2018 19:48					Actual:   (28.964255504091966,41.72708055159601)
+Jul 13,2018 19:48					Adjusted: (14.482127752045983,41.72708055159601)
+Jul 13,2018 19:48			Final pipeline construction completed.
+Jul 13,2018 19:50		Finished Counting Process: Success
+Jul 13,2018 19:50		Blue Cell Count: 132
+Jul 13,2018 19:50		Red Cell Count: -1
+Jul 13,2018 19:50	Phillip stack completed.
+Jul 13,2018 19:50	Starting ProblemDog Stack
+Jul 13,2018 19:50		Starting Config process.
+Jul 13,2018 19:51		Finished Config Process: Success
+Jul 13,2018 19:51		Starting Counting Process
+Jul 13,2018 19:51			Constructing final pipeline.
+Jul 13,2018 19:51				 Calculating averages
+Jul 13,2018 19:51					Actual:   (32.38581004445054,49.87214722362384)
+Jul 13,2018 19:51					Adjusted: (16.19290502222527,49.87214722362384)
+Jul 13,2018 19:51			Final pipeline construction completed.
+Jul 13,2018 19:53		Finished Counting Process: Success
+Jul 13,2018 19:53		Blue Cell Count: 160
+Jul 13,2018 19:53		Red Cell Count: -1
+Jul 13,2018 19:53	ProblemDog stack completed.
+Jul 13,2018 19:53	Starting Psuedoephedrine Stack
+Jul 13,2018 19:53		Starting Config process.
+Jul 13,2018 19:57		Finished Config Process: Success
+Jul 13,2018 19:57		Starting Counting Process
+Jul 13,2018 19:57			Constructing final pipeline.
+Jul 13,2018 19:57				 Calculating averages
+Jul 13,2018 19:57					Actual:   (47.703950179629736,69.77161234359654)
+Jul 13,2018 19:57					Adjusted: (23.851975089814868,69.77161234359654)
+Jul 13,2018 19:57			Final pipeline construction completed.
+Jul 13,2018 20:03		Finished Counting Process: Success
+Jul 13,2018 20:03		Blue Cell Count: 269
+Jul 13,2018 20:03		Red Cell Count: -1
+Jul 13,2018 20:03	Psuedoephedrine stack completed.
+Jul 13,2018 20:03	Starting RapidDog Stack
+Jul 13,2018 20:03		Starting Config process.
+Jul 13,2018 20:07		Finished Config Process: Success
+Jul 13,2018 20:07		Starting Counting Process
+Jul 13,2018 20:07			Constructing final pipeline.
+Jul 13,2018 20:07				 Calculating averages
+Jul 13,2018 20:07					Actual:   (45.48945485136701,63.190053306479484)
+Jul 13,2018 20:07					Adjusted: (22.744727425683504,63.190053306479484)
+Jul 13,2018 20:07			Final pipeline construction completed.
+Jul 13,2018 20:12		Finished Counting Process: Success
+Jul 13,2018 20:12		Blue Cell Count: 155
+Jul 13,2018 20:12		Red Cell Count: -1
+Jul 13,2018 20:12	RapidDog stack completed.
+Jul 13,2018 20:12	Starting Rhee Stack
+Jul 13,2018 20:12		Starting Config process.
+Jul 13,2018 20:14		Finished Config Process: Success
+Jul 13,2018 20:14		Starting Counting Process
+Jul 13,2018 20:14			Constructing final pipeline.
+Jul 13,2018 20:14				 Calculating averages
+Jul 13,2018 20:14					Actual:   (31.06411534811509,46.03712897827012)
+Jul 13,2018 20:14					Adjusted: (15.532057674057546,46.03712897827012)
+Jul 13,2018 20:14			Final pipeline construction completed.
+Jul 13,2018 20:15		Finished Counting Process: Success
+Jul 13,2018 20:15		Blue Cell Count: 141
+Jul 13,2018 20:15		Red Cell Count: -1
+Jul 13,2018 20:15	Rhee stack completed.
+Jul 13,2018 20:15	Starting Ricen Stack
+Jul 13,2018 20:15		Starting Config process.
+Jul 13,2018 20:20		Finished Config Process: Success
+Jul 13,2018 20:20		Starting Counting Process
+Jul 13,2018 20:20			Constructing final pipeline.
+Jul 13,2018 20:20				 Calculating averages
+Jul 13,2018 20:20					Actual:   (46.95916928537352,69.47692025581206)
+Jul 13,2018 20:20					Adjusted: (23.47958464268676,69.47692025581206)
+Jul 13,2018 20:20			Final pipeline construction completed.
+Jul 13,2018 20:25		Finished Counting Process: Success
+Jul 13,2018 20:25		Blue Cell Count: 245
+Jul 13,2018 20:25		Red Cell Count: -1
+Jul 13,2018 20:25	Ricen stack completed.
+Jul 13,2018 20:25	Starting Rick Stack
+Jul 13,2018 20:25		Starting Config process.
+Jul 13,2018 20:31		Finished Config Process: Success
+Jul 13,2018 20:31		Starting Counting Process
+Jul 13,2018 20:31			Constructing final pipeline.
+Jul 13,2018 20:31				 Calculating averages
+Jul 13,2018 20:31					Actual:   (48.88714241006563,71.16912260796182)
+Jul 13,2018 20:31					Adjusted: (24.443571205032814,71.16912260796182)
+Jul 13,2018 20:31			Final pipeline construction completed.
+Jul 13,2018 20:39		Finished Counting Process: Success
+Jul 13,2018 20:39		Blue Cell Count: 250
+Jul 13,2018 20:39		Red Cell Count: -1
+Jul 13,2018 20:39	Rick stack completed.
+Jul 13,2018 20:39	Starting Vincent Stack
+Jul 13,2018 20:39		Starting Config process.
+Jul 13,2018 20:39			Cell count failed.
+Jul 13,2018 20:39		Vincent stack completed.
+Jul 13,2018 20:39		
+Jul 13,2018 20:39		
+Jul 13,2018 20:39		Final Successful Counts: 
+Jul 13,2018 20:39			C:\Users\User\Documents\batch\Buyout :
+Jul 13,2018 20:39				Blue Cell Count: 132
+Jul 13,2018 20:39				Red Cell Count: -1
+Jul 13,2018 20:39			C:\Users\User\Documents\batch\Christan :
+Jul 13,2018 20:39				Blue Cell Count: 267
+Jul 13,2018 20:39				Red Cell Count: -1
+Jul 13,2018 20:39			C:\Users\User\Documents\batch\Combo :
+Jul 13,2018 20:39				Blue Cell Count: 130
+Jul 13,2018 20:39				Red Cell Count: -1
+Jul 13,2018 20:39			C:\Users\User\Documents\batch\OneMinute :
+Jul 13,2018 20:39				Blue Cell Count: 100
+Jul 13,2018 20:39				Red Cell Count: -1
+Jul 13,2018 20:39			C:\Users\User\Documents\batch\Phillip :
+Jul 13,2018 20:39				Blue Cell Count: 132
+Jul 13,2018 20:39				Red Cell Count: -1
+Jul 13,2018 20:39			C:\Users\User\Documents\batch\ProblemDog :
+Jul 13,2018 20:39				Blue Cell Count: 160
+Jul 13,2018 20:39				Red Cell Count: -1
+Jul 13,2018 20:39			C:\Users\User\Documents\batch\Psuedoephedrine :
+Jul 13,2018 20:39				Blue Cell Count: 269
+Jul 13,2018 20:39				Red Cell Count: -1
+Jul 13,2018 20:39			C:\Users\User\Documents\batch\RapidDog :
+Jul 13,2018 20:39				Blue Cell Count: 155
+Jul 13,2018 20:39				Red Cell Count: -1
+Jul 13,2018 20:39			C:\Users\User\Documents\batch\Rhee :
+Jul 13,2018 20:39				Blue Cell Count: 141
+Jul 13,2018 20:39				Red Cell Count: -1
+Jul 13,2018 20:39			C:\Users\User\Documents\batch\Ricen :
+Jul 13,2018 20:39				Blue Cell Count: 245
+Jul 13,2018 20:39				Red Cell Count: -1
+Jul 13,2018 20:39			C:\Users\User\Documents\batch\Rick :
+Jul 13,2018 20:39				Blue Cell Count: 250
+Jul 13,2018 20:39				Red Cell Count: -1
+Jul 13,2018 20:39	 Cell Profiler completed.
